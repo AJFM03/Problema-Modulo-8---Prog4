@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Libros{% endblock %}
+
+{% block content %}
+<h2>📚 Lista de Libros</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Género</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.genre }}</td>
+      <td>{{ book.status }}</td>
+      <td>
+        <a class="btn btn-sm btn-warning" href="{{ url_for('edit_book', id=book.id) }}">✏️ Editar</a>
+        <a class="btn btn-sm btn-danger" href="{{ url_for('delete_book', id=book.id) }}">🗑️ Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
